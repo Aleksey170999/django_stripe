@@ -1,0 +1,21 @@
+<script src="https://js.stripe.com/v3/"></script>
+
+<body>
+    Название товара:
+    <h2>{{ product.name }}</h2>
+    Цена товара:
+    <h2>{{ product.price }}</h2>
+    <button id="button1">Buy</button>
+
+<script>
+
+    button1.onclick = function() {
+    var stripe = Stripe("{{ public_key }}");
+    fetch("{% url 'buy' product.id %}", {
+        method: "get",
+    })
+        .then((response) => response.json())
+        .then((data) => stripe.redirectToCheckout({ sessionId: data.session_id }))
+  }
+</script>
+</body>
