@@ -60,3 +60,13 @@ class ItemRetrieve(TemplateView):
         context['public_key'] = settings.STRIPE_PUBLIC_KEY
         context['product'] = ItemSerializer(product, many=False).data
         return context
+
+
+class HomeView(TemplateView):
+    template_name = "home.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        products = Item.objects.all()
+        context['products'] = products
+        return context

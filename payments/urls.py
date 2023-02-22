@@ -6,6 +6,7 @@ urlpatterns = [
     path('success/', views.SuccessView.as_view()),
     path('cancel/', views.CancelView.as_view()),
     path('buy/<int:id>/', views.StripeView.as_view(), name="buy"),
-    path('item/<int:id>/', views.ItemRetrieve.as_view()),
+    path('item/<int:id>/', views.ItemRetrieve.as_view(), name="item"),
+    path('', views.HomeView.as_view()),
 
 ]
